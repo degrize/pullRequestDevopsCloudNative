@@ -36,6 +36,7 @@ http://backend:3000.
 
 
 Notification service
+
 Nous avons implémenté le service de notification. La file RabbitMQ est
 contenue dans un container et écoute sur le port 5672.
 Nous avons adapté notre backend pour qu’il puisse ajouter un message
@@ -54,6 +55,7 @@ sur comment mettre Quarkus dans un container donc nous avons utilisé Quarkus
 en l’exécutant “à la main” avec la commande ./mvnw -f . quarkus:dev.
 
 Load Testing
+
 Nous avons opté pour l'utilisation de K6 pour nos besoins en tests de charge pour
 les raisons suivantes :
 ● K6 utilise JavaScript, un langage que notre équipe connaît bien. Cela facilite
@@ -73,7 +75,9 @@ latence moyenne et les valeurs de latence extrêmes. Cette décision reflète no
 priorité accordée à l'efficacité, à la flexibilité et à l'efficacité globale de notre
 processus de tests de charge.
 ❖ Utilisation de K6 pour ce projet
+
 1. Test 1
+   
 Description :
 Nous exécutons un test de charge avec K6 en effectuant 1000 requêtes GET vers
 le backend sur http://localhost:3000. Nous ajoutons une pause de 0.5 secondes
@@ -87,7 +91,7 @@ utilisateurs virtuels pendant 30 secondes. Aucune des 11 607 requêtes n'a écho
 et le temps moyen de traitement des requêtes était d'environ 13.25 ms. En
 résumé, l'application a montré une bonne stabilité et réactivité sous cette charge
 simulée.
-2. Test 2
+3. Test 2
 Description :
 On tente 1000 connexions de login avec un payload JSON qui inclut un username
 et un mot de passe d'un user qui n'existe pas.
@@ -102,12 +106,10 @@ que notre back est solide et résiste à un nombre important d'appels.
 Application Monitoring, Telemetry or Tracing
 ...... Nous avons installé Prometheus et effectué quelques tests dessus pour essayer
 de comprendre son fonctionnement et comment nous pourrions afficher les
-graphiques des requêtes par minute et la durée des requêtes. Cependant, nous
-n’avons pas eu le temps de modifier nos applications afin qu’elles envoient les
-données à Prometheus donc nous n’avons pas pu implémenter cette
-fonctionnalité.
+graphiques des requêtes par minute et la durée des requêtes.
 
 Comment utiliser l’application
+
 Pour utiliser l’application, il suffit d’utiliser la commande docker compose
 sur le fichier prod ou dev afin de lancer l’application en mode production ou en
 mode développement.
