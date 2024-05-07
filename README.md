@@ -242,7 +242,7 @@ datasources:
 ```
 
 ## Configuration grafana :
-* 1. Page d'accueil :*
+*1. Page d'accueil :*
 username : admin
 password : admin
 ![Capture d’écran du 2024-05-08 00-28-34](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/e11f4989-a5a6-4adc-b680-0ba5f935e9a5)
@@ -253,25 +253,25 @@ password : admin
 *3. Puis cliquer sur "Add visualization"*
 ![Capture d’écran du 2024-05-08 00-30-46](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/2e433645-5062-4755-9cb3-dc722416894a)
 
-*3. Puis cliquer sur *Configure a new datasource"*
+*4. Puis cliquer sur *Configure a new datasource"*
 ![Capture d’écran du 2024-05-08 00-30-58](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/78821433-c7b8-4abf-8134-9decb4cb8304)
 
-*4. Choisir sur "Prometheus"*
+*5. Choisir sur "Prometheus"*
 ![Capture d’écran du 2024-05-08 00-45-44](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/69bd420e-49bd-4db2-862d-e73106ce06e9)
 
-*5. Entrer l'url : "http://localhost:9090"*
+*6. Entrer l'url : "http://localhost:9090"*
 ![Capture d’écran du 2024-05-08 00-31-18](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/f714f236-59d5-4b7a-ac0b-d53a2e46dc63)
 
-*6. En bas de la page cliquer sur "Save and test"*
+*7. En bas de la page cliquer sur "Save and test"*
 ![Capture d’écran du 2024-05-08 00-31-26](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/573c6551-0a66-4363-9768-1cf97bd7ee65)
 
-*7. Revenir à 3. puis choisir "Prometheus"*
+*8. Revenir à 3. puis choisir "Prometheus"*
 ![Capture d’écran du 2024-05-08 00-45-15](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/16c6003b-4b32-4b62-93db-33a1d66ab899)
 
-*8. Choisir la métrique qu'on veut visualiser puis sur "Run queries*
+*9. Choisir la métrique qu'on veut visualiser puis sur "Run queries*
 ![Capture d’écran du 2024-05-08 00-39-38](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/584b063e-c1c9-44c3-b49d-f5570a96afef)
 
-*9. Visualiser*
+*10. Visualiser*
 ![Capture d’écran du 2024-05-08 00-41-30](https://github.com/degrize/pullRequestDevopsCloudNative/assets/87711309/6e572b15-293f-4546-bd2e-b52908461765)
 
 
