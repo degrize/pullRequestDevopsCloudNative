@@ -10,6 +10,7 @@ services:
     ports:
       - "8080:80"
     restart: always
+    
 
   backend:
     build:
@@ -48,9 +49,7 @@ services:
       - rabbitmq-data:/var/lib/rabbitmq
 
   jenkins:
-    build:
-      context: ./jenkins
-      dockerfile: Dockerfile
+    image: jenkins/jenkins:lts
     ports:
       - "8081:8080"  # Port pour l'interface utilisateur Jenkins
       - "50000:50000"  # Port pour les agents Jenkins (JNLP)
@@ -60,7 +59,49 @@ services:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # Désactive le Wizard de setup initial si souhaité
     restart: always
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+    depends_on:
+      - cadvisor
+    
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - 8082:8080
+    depends_on:
+      - redis
+    
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+
+
 volumes:
   postgres-data:
   rabbitmq-data:
   jenkins-data:  # Défini pour la persistance des données Jenkins
+  grafana-storage: 
+  prom_data:
