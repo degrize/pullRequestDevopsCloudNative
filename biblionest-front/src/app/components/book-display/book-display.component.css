@@ -1,0 +1,12 @@
+.infos_div {
+  width: 90%;
+  margin: 1vh 5%; 
+  border-radius: 1vh;
+  padding: 4vh;
+  color: #fcd036;
+}
+
+.card {
+  border-style: none;
+  background: transparent;
+}
