@@ -6,7 +6,6 @@ pipeline {
                 echo 'Installing k6'
                 sh ' chmod +x setup_k6.sh'
                 echo 'Running K6 performance tests...'
-                sh ' apt-get update'
                 sh 'k6 run ./script.js'
             }
         }
