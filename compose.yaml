@@ -48,7 +48,9 @@ services:
       - rabbitmq-data:/var/lib/rabbitmq
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
     ports:
       - "8081:8080"  # Port pour l'interface utilisateur Jenkins
       - "50000:50000"  # Port pour les agents Jenkins (JNLP)
