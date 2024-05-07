@@ -63,6 +63,7 @@ RUN npm run build --prod
 FROM nginx:latest
 
  Copy the build output to replace the default nginx contents.
+ 
 COPY --from=build /usr/local/app/dist/fr-administration-front /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
