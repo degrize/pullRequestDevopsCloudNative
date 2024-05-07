@@ -4,7 +4,10 @@ Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA
 Ce projet vise à convertir une application monolithique en une architecture de microservices, tout en intégrant divers outils de DevOps pour une approche Cloud Native.
 
 ##Notre travail
-Notre apport sur ce projet a été d'ajouter les service de monitoring (Prometheus et grafana) et un service pour les builds pour l'automatisation des tests (Jenkins) et pour l'analyse statique de code (SonarQube).
+Notre apport sur ce projet a été d'ajouter plusieurs services :
+ Monitoring : Prometheus et grafana (poour la visualisation) et cAdvisor pour récupérer les métriques des containers
+ Build pour automatisation de test : Jenkins
+ Analyse statique de code : SonarQube
 
 Schéma de notre architecture microservices
 ![image](https://github.com/degrize/pullRequestDevopsCloudNative/assets/133746978/e3bc9aed-8a45-4e4a-a3c9-31129886464f)
@@ -144,10 +147,52 @@ services:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # Désactive le Wizard de setup initial si souhaité
     restart: always
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+    depends_on:
+      - cadvisor
+    
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - 8082:8080
+    depends_on:
+      - redis
+    
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+
+
 volumes:
   postgres-data:
   rabbitmq-data:
   jenkins-data:  # Défini pour la persistance des données Jenkins
+  grafana-storage: 
+  prom_data:
 ```
 
 
