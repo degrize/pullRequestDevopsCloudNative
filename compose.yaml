@@ -45,6 +45,17 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8081:8080"  # Port pour l'interface utilisateur Jenkins
+      - "50000:50000"  # Port pour les agents Jenkins (JNLP)
+    volumes:
+      - jenkins-data:/var/jenkins_home  # Stockage des données Jenkins pour la persistance
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # Désactive le Wizard de setup initial si souhaité
+    restart: always
+
 volumes:
   postgres-data:
   rabbitmq-data:
