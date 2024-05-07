@@ -23,7 +23,7 @@ Notification. Une requête sera alors envoyée au backend qui traitera la notifi
 avant de la mettre dans la file RabbitMQ, puis Quarkus videra la file RabbitMQ, et
 affichera la notification dans la console.
 
-DockerFile Back :
+## *DockerFile Back :*
 
 FROM node:18-alpine
 RUN mkdir -p /app
@@ -37,9 +37,9 @@ CMD ["node", "dist/main.js"]
 
 
 
-DockerFile Front : 
+## *DockerFile Front :*
 
-Stage 1: Compile and Build angular codebase
+#### *Stage 1:* Compile and Build angular codebase
 
  Use official node image as the base image
 FROM node:18-alpine as build
@@ -57,7 +57,7 @@ RUN npm install
 RUN npm run build --prod
 
 
- Stage 2: Serve app with nginx server
+#### *Stage 2:* Serve app with nginx server
 
  Use official nginx image as the base image
 FROM nginx:latest
@@ -73,7 +73,7 @@ EXPOSE 80
 
 
 
-DockerCompose :
+### *DockerCompose :*
 
 version: '3'
 
