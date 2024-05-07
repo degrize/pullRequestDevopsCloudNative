@@ -107,7 +107,7 @@ n’avons pas eu le temps de modifier nos applications afin qu’elles envoient 
 données à Prometheus donc nous n’avons pas pu implémenter cette
 fonctionnalité.
 
-#Comment utiliser l’application
+Comment utiliser l’application
 Pour utiliser l’application, il suffit d’utiliser la commande docker compose
 sur le fichier prod ou dev afin de lancer l’application en mode production ou en
 mode développement.
