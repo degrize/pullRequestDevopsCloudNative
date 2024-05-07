@@ -1,5 +1,5 @@
-ESIR2 - DevOps -Cloud Native and Microservices
-Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA
+#ESIR2 - DevOps -Cloud Native and Microservices
+*Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA*
 
 Ce projet vise à convertir une application monolithique en une architecture de microservices, tout en intégrant divers outils de DevOps pour une approche Cloud Native.
 
