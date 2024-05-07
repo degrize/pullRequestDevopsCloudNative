@@ -1,9 +1,9 @@
-#ESIR2 - DevOps -Cloud Native and Microservices
+# ESIR2 - DevOps -Cloud Native and Microservices
 *Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA*
 
 Ce projet vise à convertir une application monolithique en une architecture de microservices, tout en intégrant divers outils de DevOps pour une approche Cloud Native.
 
-##Notre travail
+## Notre travail
 Notre apport sur ce projet a été d'ajouter plusieurs services :
  Monitoring : Prometheus et grafana (poour la visualisation) et cAdvisor pour récupérer les métriques des containers
  Build pour automatisation de test : Jenkins
@@ -12,7 +12,7 @@ Notre apport sur ce projet a été d'ajouter plusieurs services :
 Schéma de notre architecture microservices
 ![image](https://github.com/degrize/pullRequestDevopsCloudNative/assets/133746978/e3bc9aed-8a45-4e4a-a3c9-31129886464f)
 
-##Lancement de l'application
+## Lancement de l'application
 Pour utiliser l’application, il suffit de lancer Quarkus d’utiliser la commande docker compose
 sur le fichier prod ou dev afin de lancer l’application en mode production ou en
 mode développement.
@@ -32,7 +32,7 @@ affichera la notification dans la console.
 ./mvnw -f . quarkus:dev
 ```
 
-#FICHIERS DE CONFIGURATION
+# FICHIERS DE CONFIGURATION
 
 ## *DockerFile Back :*
 
@@ -241,7 +241,7 @@ datasources:
   editable: true
 ```
 
-##Configuration grafana :
+## Configuration grafana :
 * 1. Page d'accueil :*
 username : admin
 password : admin
