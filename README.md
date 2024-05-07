@@ -1,4 +1,4 @@
-ESIR2 - Architecture Logicielle
+ESIR2 - DevOps -Cloud Native and Microservices
 Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA
 
 Schéma de notre architecture microservices
