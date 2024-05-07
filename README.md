@@ -28,6 +28,7 @@ affichera la notification dans la console.
 
 ## *DockerFile Back :*
 
+```
 FROM node:18-alpine
 RUN mkdir -p /app
 WORKDIR /app
@@ -36,12 +37,13 @@ RUN npm install
 RUN npm run build
 EXPOSE 3000
 CMD ["node", "dist/main.js"]
+```
 
 
 
 
 ## *DockerFile Front :*
-
+```
 #### *Stage 1:* Compile and Build angular codebase
 
  Use official node image as the base image
@@ -73,7 +75,7 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 
  Expose port 80
 EXPOSE 80
-
+```
 
 
 ### *DockerCompose :*
