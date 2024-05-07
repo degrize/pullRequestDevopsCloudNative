@@ -10,11 +10,9 @@ Schéma de notre architecture microservices
 ![image](https://github.com/degrize/pullRequestDevopsCloudNative/assets/133746978/e3bc9aed-8a45-4e4a-a3c9-31129886464f)
 
 ##Lancement de l'application
-Pour utiliser l’application, il suffit d’utiliser la commande docker compose
+Pour utiliser l’application, il suffit de lancer Quarkus d’utiliser la commande docker compose
 sur le fichier prod ou dev afin de lancer l’application en mode production ou en
 mode développement.
-Comme énoncé plus haut, il faudra également lancer quarkus
-manuellement afin que celui-ci puisse être utilisé.
 Ensuite, il suffit de se rendre sur http://localhost pour pouvoir accéder au
 site. Le site sera distribué par Nginx en production et par Angular en
 développement.
@@ -25,6 +23,11 @@ d’une association de laquelle on est président et cliquer sur le bouton Envoy
 Notification. Une requête sera alors envoyée au backend qui traitera la notification
 avant de la mettre dans la file RabbitMQ, puis Quarkus videra la file RabbitMQ, et
 affichera la notification dans la console.
+
+## *QUarkus*
+```
+./mvnw -f . quarkus:dev
+```
 
 ## *DockerFile Back :*
 
@@ -147,4 +150,4 @@ volumes:
   jenkins-data:  # Défini pour la persistance des données Jenkins
 ```
 
-###Configuratio
+
