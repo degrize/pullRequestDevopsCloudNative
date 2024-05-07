@@ -1,7 +1,8 @@
 ESIR2 - DevOps -Cloud Native and Microservices
 Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA
 
-L'objectif de ce projet est de transformer un projet en microservices et d'y ajouter différents outils de DevOps.
+Ce projet vise à convertir une application monolithique en une architecture de microservices, tout en intégrant divers outils de DevOps pour une approche Cloud Native.
+
 Schéma de notre architecture microservices
 ![image](https://github.com/degrize/pullRequestDevopsCloudNative/assets/133746978/e3bc9aed-8a45-4e4a-a3c9-31129886464f)
 
