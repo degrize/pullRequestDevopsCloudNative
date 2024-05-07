@@ -3,10 +3,13 @@ Ethan GAUTHIER & Roland KOFFI & Kechiedou MEDA
 
 Ce projet vise à convertir une application monolithique en une architecture de microservices, tout en intégrant divers outils de DevOps pour une approche Cloud Native.
 
+##Notre travail
+Notre apport sur ce projet a été d'ajouter les service de monitoring (Prometheus et grafana) et un service pour les builds pour l'automatisation des tests (Jenkins) et pour l'analyse statique de code (SonarQube).
+
 Schéma de notre architecture microservices
 ![image](https://github.com/degrize/pullRequestDevopsCloudNative/assets/133746978/e3bc9aed-8a45-4e4a-a3c9-31129886464f)
 
-
+##Lancement de l'application
 Pour utiliser l’application, il suffit d’utiliser la commande docker compose
 sur le fichier prod ou dev afin de lancer l’application en mode production ou en
 mode développement.
@@ -74,7 +77,7 @@ EXPOSE 80
 
 
 ### *DockerCompose :*
-
+```Dockerfile
 version: '3'
 
 services:
@@ -87,6 +90,7 @@ services:
     ports:
       - "8080:80"
     restart: always
+    
 
   backend:
     build:
@@ -139,3 +143,6 @@ volumes:
   postgres-data:
   rabbitmq-data:
   jenkins-data:  # Défini pour la persistance des données Jenkins
+```
+
+###Configuratio
