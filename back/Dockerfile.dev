@@ -1,0 +1,6 @@
+# Development
+FROM node:18-alpine as development
+WORKDIR /app
+COPY . .
+COPY ./node_modules/ .
+CMD ["npm", "run", "start:dev"]

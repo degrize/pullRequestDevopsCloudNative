@@ -1,0 +1,140 @@
+<div class="pt-5 w-full flex justify-center">
+  <div *ngIf="!association" class="w-3/4">
+    <p>Chargement...</p>
+  </div>
+  <div *ngIf="association" class="w-3/4">
+    <div class="py-3">
+      <div class="w-full flex justify-between ">
+        <div class="self-end">
+          <h2 class="text-2xl font-bold">{{ association.name }}</h2>
+        </div>
+        <div class="w-1/3 flex justify-end">
+          <app-associations-detail-modal-join *ngIf="!isCurrentUserMember"
+                                              [association]="association" [currentUser]="currentUser"
+                                              [isCurrentUserMember]="isCurrentUserMember"
+                                              (reloadEvent)="reloadPage($event)">
+          </app-associations-detail-modal-join>
+          <app-associations-detail-modal-leave *ngIf="isCurrentUserMember && this.association.members.length > 1"
+                                               [association]="association" [currentUser]="currentUser"
+                                               [isCurrentUserMember]="isCurrentUserMember"
+                                               [isCurrentUserPresident]="isCurrentUserPresident"
+                                               (reloadEvent)="reloadPage($event)">
+          </app-associations-detail-modal-leave>
+          <app-associations-detail-modal-update *ngIf="isCurrentUserPresident"
+                                                [association]="association" [currentUser]="currentUser"
+                                                (reloadEvent)="reloadPage($event)">
+          </app-associations-detail-modal-update>
+        </div>
+      </div>
+      <hr/>
+    </div>
+
+    <div class="px-3">
+      <div class="pb-3">
+        <div class="py-2">
+          <div class="w-full flex justify-between ">
+            <div class="self-end">
+              <h3 class="text-xl font-semibold">Membres</h3>
+            </div>
+            <div class="w-1/3 flex justify-end">
+              <app-associations-detail-modal-notification *ngIf="isCurrentUserPresident"
+                                                          [association]="association" [currentUser]="currentUser"
+                                                          (reloadEvent)="reloadPage($event)">
+              </app-associations-detail-modal-notification>
+            </div>
+          </div>
+          <hr/>
+        </div>
+
+        <div class="w-full shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Firstname
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Lastname
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Age
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Role
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Action
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let member of association.members"
+                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-100">
+              <td class="px-6 py-4">
+                {{ member.firstName | titlecase }}
+              </td>
+              <td class="px-6 py-4">
+                {{ member.name | uppercase }}
+              </td>
+              <td class="px-6 py-4">
+                {{ member.age }}
+              </td>
+              <td class="px-6 py-4">
+                {{ member.role | titlecase }}
+              </td>
+              <td class="px-6 py-4">
+                <button *ngIf="!this.isCurrentUserPresident || member.role.toLocaleLowerCase()==='président'"
+                        (click)="navigateToUserDetail(member.id)"
+                        type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                  Consulter
+                </button>
+                <button (click)="updateModifiedUser(member)" type="button"
+                        *ngIf="this.isCurrentUserPresident && member.role.toLocaleLowerCase()!=='président'"
+                        class="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2  dark:focus:ring-yellow-900">
+                  Gérer
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="py-2">
+          <div class="w-full flex justify-between ">
+            <div class="self-end">
+              <h3 class="text-xl font-bold">Minutes</h3>
+            </div>
+            <div class="w-1/3 flex justify-end">
+              <app-associations-detail-modal-minute-create *ngIf="isCurrentUserPresident"
+                                                           [association]="association"
+                                                           (reloadEvent)="reloadPage($event)">
+              </app-associations-detail-modal-minute-create>
+            </div>
+          </div>
+          <hr/>
+        </div>
+        <div class="w-full flex flex-wrap justify-center space-x-3 space-y-3">
+          <div *ngFor="let minute of association.minutes"
+               class="block w-5/12 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">
+              Minute du {{ minute.date }}
+              <span class="font-normal text-gray-700 dark:text-gray-400">({{ minute.voters.length }} votes)</span>
+            </h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">
+              {{ minute.content }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-associations-detail-modal-gerer-members
+  *ngIf="this.isCurrentUserPresident"
+  [userModified]="modifiedUser" [association]="association" [open]="open"
+  (reloadEvent)="reloadPage($event)" (openEvent)="setOpen($event)">
+</app-associations-detail-modal-gerer-members>

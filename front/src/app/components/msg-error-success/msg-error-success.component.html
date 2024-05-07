@@ -1,0 +1,5 @@
+<div>
+  <div *ngFor="let alert of alerts.slice().reverse(); index as i" class="text-blue-600">
+    <app-alert [key]=i [msg]="alert.msg" [type]="alert.type" [time]="alert.time" (deleteItemEvent)="deleteAlert($event)"></app-alert>
+  </div>
+</div>

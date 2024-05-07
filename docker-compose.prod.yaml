@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.prod
+      target: production
+    ports:
+      - "80:80"
+    volumes:
+      - ./front:/app
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://backend:3000
+
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.prod
+      target: production
+    volumes:
+      - ./back:/app
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=mydatabase
+      - DATABASE_URL=postgres://user:password@database:5432/db
+
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=mydatabase
+    volumes:
+      - postgres-dev-data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    volumes:
+      - rabbitmq-dev-data:/var/lib/rabbitmq
+
+volumes:
+  postgres-dev-data:
+  rabbitmq-dev-data:

@@ -1,0 +1,31 @@
+<div class="pt-5 w-full flex justify-center">
+  <div *ngIf="!user" class="w-3/4">
+    <p>Chargement...</p>
+  </div>
+  <div *ngIf="user" class="w-3/4">
+    <div class="py-3">
+      <h2 class="text-2xl font-bold">
+        {{ user.firstname | titlecase }} {{ user.lastname | uppercase }} - {{ user.age }} ans
+      </h2>
+      <hr/>
+    </div>
+
+    <div class="px-3">
+      <div class="pb-3">
+        <div class="py-2">
+          <h3 class="text-xl font-semibold">Associations</h3>
+          <hr/>
+        </div>
+
+        <p *ngIf="!user || !user?.associations?.length"
+           class="p-2">
+          N'a rejoint aucune association pour le moment.
+        </p>
+
+        <app-users-detail-accordion *ngIf="user && user.associations"
+                                    [currentUserId]="user.id!" [associations]="user.associations">
+        </app-users-detail-accordion>
+      </div>
+    </div>
+  </div>
+</div>

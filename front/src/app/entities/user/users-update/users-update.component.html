@@ -1,0 +1,246 @@
+<div>
+  <h2 class="text-2xl border-b-2 pb-2 md:w-1/4 mb-2 font-semibold uppercase text-center">New user</h2>
+  <app-msg-success-error></app-msg-success-error>
+
+  <form class="py-3 md:px-40 flex flex-col items-center" [formGroup]="editForm" (ngSubmit)="save()">
+    <div class="mb-6 hidden">
+      <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+      <input type="number" id="id"
+             formControlName="id"
+             class="md:w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+           focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+           dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+
+    <div class="flex flex-col gap-3 mb-6 flex-wrap md:w-2/3">
+      <div>
+        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+        <input formControlName="firstname" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+        <div *ngIf="editForm.get('firstname')!.invalid && (editForm.get('firstname')!.dirty || editForm.get('firstname')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('firstname')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('firstname')?.errors?.['minlength']"
+          >
+            The min length is 2
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('firstname')?.errors?.['maxlength']"
+          >
+            The max length is 50
+          </small>
+        </div>
+      </div>
+      <div>
+        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+        <input formControlName="lastname" type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required>
+        <div *ngIf="editForm.get('lastname')!.invalid && (editForm.get('lastname')!.dirty || editForm.get('lastname')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['minlength']"
+          >
+            The min length is 2
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['maxlength']"
+          >
+            The max length is 20
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+        <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="myemail@mail.com" required>
+        <div *ngIf="editForm.get('lastname')!.invalid && (editForm.get('lastname')!.dirty || editForm.get('lastname')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['minlength']"
+          >
+            The min length is 2
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('lastname')?.errors?.['maxlength']"
+          >
+            The max length is 20
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Age
+        </label>
+        <input formControlName="age" type="number" id="age"
+               min="18" max="150"
+               class="bg-gray-50 border border-gray-300 text-gray-900
+                    text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                    dark:focus:border-blue-500"
+               placeholder="21"
+               pattern="[1-9]{3}" required>
+        <div *ngIf="editForm.get('age')!.invalid && (editForm.get('age')!.dirty || editForm.get('age')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('age')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('age')?.errors?.['minlength']"
+          >
+            The min length is 2
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('age')?.errors?.['maxlength']"
+          >
+            The max length is 2
+          </small>
+        </div>
+      </div>
+      <div>
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+        <input formControlName="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+        <div *ngIf="editForm.get('password')!.invalid && (editForm.get('password')!.dirty || editForm.get('password')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('password')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('password')?.errors?.['minlength']"
+          >
+            Your password is required to be at least 4 characters.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('password')?.errors?.['maxlength']"
+          >
+            Your password cannot be longer than 50 characters.
+          </small>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="passwordConfirm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Password Confirm
+        </label>
+        <input formControlName="passwordConfirm" type="password" id="passwordConfirm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+        <div *ngIf="editForm.get('passwordConfirm')!.invalid && (editForm.get('passwordConfirm')!.dirty || editForm.get('passwordConfirm')!.touched)">
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('passwordConfirm')?.errors?.['required']"
+          >
+            This field is required.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('passwordConfirm')?.errors?.['minlength']"
+          >
+            Your password is required to be at least 4 characters.
+          </small>
+
+          <small
+            class="text-red-600 text-sm"
+            *ngIf="editForm.get('passwordConfirm')?.errors?.['maxlength']"
+          >
+            Your password cannot be longer than 50 characters.
+          </small>
+        </div>
+
+        <div class="text-red-500 p-1" *ngIf="doNotMatch">
+          The password and its confirmation do not match!
+        </div>
+      </div>
+
+      <button type="submit"
+              class="self-start text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
+              font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5
+             text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+        Save
+      </button>
+    </div>
+<!--
+
+&lt;!&ndash;    More detail&ndash;&gt;
+    <div class="mb-6">
+      <div id="accordion-nested-parent" data-accordion="collapse">
+        <h2 id="accordion-collapse-heading-1">
+          <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+            <span>Add more details (#Optionnal) </span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+          <div *ngFor="let component of associationDetailComponentList"
+            class="relative overflow-x-auto p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+              <div class="space-x-0 space-y-4 sm:space-y-0 sm:space-x-4 rtl:space-x-reverse flex items-center mb-4">
+                <div class="relative md:w-1/3">
+                  <span>
+                    {{ component.association?.name }}
+                  </span>
+                </div>
+                <button type="button" class="p-3 text-sm font-medium text-gray-500 focus:outline-none bg-gray-100 rounded-lg hover:bg-gray-200 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                  <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 10H1m0 0 3-3m-3 3 3 3m1-9h10m0 0-3 3m3-3-3-3"/>
+                  </svg>
+                </button>
+                <div class="relative w-full">
+                  <span *ngIf="component.role"
+                      class="mx-1 underline uppercase">
+                    #{{ component.role }}
+                  </span>
+                </div>
+                <svg (click)="deleteMoreDetailItem(component.association.id)"
+                  class="w-8 h-8 text-rose-800 dark:text-white cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+              </div>
+          </div>
+
+          //<app-modal-more-details (moreDetailEvent)="getFromMoreDetail($event)"></app-modal-more-details>
+        </div>
+      </div>
+
+    </div>
+
+-->
+  </form>
+
+</div>
