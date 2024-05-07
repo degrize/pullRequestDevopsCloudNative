@@ -32,6 +32,8 @@ affichera la notification dans la console.
 ./mvnw -f . quarkus:dev
 ```
 
+#FICHIERS DE CONFIGURATION
+
 ## *DockerFile Back :*
 
 ```
@@ -195,4 +197,45 @@ volumes:
   prom_data:
 ```
 
+## Prometheus.yml
+
+```
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: []
+    scheme: http
+    timeout: 10s
+    api_version: v1
+scrape_configs:
+- job_name: prometheus
+  honor_timestamps: true
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - localhost:9090
+- job_name: cadvisor
+  scrape_interval: 5s
+  static_configs:
+  - targets:
+    - cadvisor:8080
+```
+
+## *Datasource.yml pour Grafana :*
+apiVersion: 1
+
+datasources:
+- name: Prometheus
+  type: prometheus
+  url: http://prometheus:9090 
+  isDefault: true
+  access: proxy
+  editable: true
 
